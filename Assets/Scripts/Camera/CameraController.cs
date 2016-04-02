@@ -20,8 +20,8 @@ public class CameraController : MonoBehaviour
     private Vector3 currentPosition;
     private Vector3 nextPosition;
     // Rotação
-    public Quaternion currentRotation;
-    public Quaternion nextRotation;
+    public Quaternion CurrentRotation;
+    public Quaternion NextRotation;
 
 
     #endregion
@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
     public void Awake()
     {
         currentPosition = transform.position;
-        currentRotation = transform.rotation;
+        CurrentRotation = transform.rotation;
     }
 
     // Update

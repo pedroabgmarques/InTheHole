@@ -52,30 +52,30 @@ public class CameraAvoidClip : MonoBehaviour
     public void LateUpdate()
     {
         // initially set the target distance
-        float targetDist = originalDist;
+        float _targetDist = originalDist;
 
         ray.origin = pivotTransform.position + pivotTransform.forward * SphereCastRadius;
         ray.direction = -pivotTransform.forward;
 
         // initial check to see if start of spherecast intersects anything
-        var cols = Physics.OverlapSphere(ray.origin, SphereCastRadius);
+        var _cols = Physics.OverlapSphere(ray.origin, SphereCastRadius);
 
-        bool initialIntersect = false;
-        bool hitSomething = false;
+        bool _initialIntersect = false;
+        bool _hitSomething = false;
 
         // loop through all the collisions to check if something we care about
-        for (int i = 0; i < cols.Length; i++)
+        for (int _i = 0; _i < _cols.Length; _i++)
         {
-            if ((!cols[i].isTrigger) &&
-                !(cols[i].attachedRigidbody != null && cols[i].attachedRigidbody.CompareTag(DontClipTag)))
+            if ((!_cols[_i].isTrigger) &&
+                !(_cols[_i].attachedRigidbody != null && _cols[_i].attachedRigidbody.CompareTag(DontClipTag)))
             {
-                initialIntersect = true;
+                _initialIntersect = true;
                 break;
             }
         }
 
         // if there is a collision
-        if (initialIntersect)
+        if (_initialIntersect)
         {
             ray.origin += pivotTransform.forward * SphereCastRadius;
 
@@ -92,33 +92,33 @@ public class CameraAvoidClip : MonoBehaviour
         Array.Sort(hits, rayHitComparer);
 
         // set the variable used for storing the closest to be as far as possible
-        float nearest = Mathf.Infinity;
+        float _nearest = Mathf.Infinity;
 
         // loop through all the collisions
-        for (int i = 0; i < hits.Length; i++)
+        for (int _i = 0; _i < hits.Length; _i++)
         {
             // only deal with the collision if it was closer than the previous one, not a trigger, and not attached to a rigidbody tagged with the dontClipTag
-            if (hits[i].distance < nearest && (!hits[i].collider.isTrigger) &&
-                !(hits[i].collider.attachedRigidbody != null &&
-                  hits[i].collider.attachedRigidbody.CompareTag(DontClipTag)))
+            if (hits[_i].distance < _nearest && (!hits[_i].collider.isTrigger) &&
+                !(hits[_i].collider.attachedRigidbody != null &&
+                  hits[_i].collider.attachedRigidbody.CompareTag(DontClipTag)))
             {
                 // change the nearest collision to latest
-                nearest = hits[i].distance;
-                targetDist = -pivotTransform.InverseTransformPoint(hits[i].point).z;
-                hitSomething = true;
+                _nearest = hits[_i].distance;
+                _targetDist = -pivotTransform.InverseTransformPoint(hits[_i].point).z;
+                _hitSomething = true;
             }
         }
 
         // visualise the cam clip effect in the editor
-        if (hitSomething)
+        if (_hitSomething)
         {
-            Debug.DrawRay(ray.origin, -pivotTransform.forward * (targetDist + SphereCastRadius), Color.red);
+            Debug.DrawRay(ray.origin, -pivotTransform.forward * (_targetDist + SphereCastRadius), Color.red);
         }
 
         // hit something so move the camera to a better position
-        Protecting = hitSomething;
-        currentDist = Mathf.SmoothDamp(currentDist, targetDist, ref moveVelocity,
-                                       currentDist > targetDist ? ClipMoveTime : ReturnTime);
+        Protecting = _hitSomething;
+        currentDist = Mathf.SmoothDamp(currentDist, _targetDist, ref moveVelocity,
+                                       currentDist > _targetDist ? ClipMoveTime : ReturnTime);
         currentDist = Mathf.Clamp(currentDist, ClosestDistance, originalDist);
         cameraTransform.localPosition = -Vector3.forward * currentDist;
     }
