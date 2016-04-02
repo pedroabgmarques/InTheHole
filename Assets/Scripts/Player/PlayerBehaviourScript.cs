@@ -40,7 +40,7 @@ public class PlayerBehaviourScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
     {
         
         //PLAYER STANCE----------------------------------------------------
@@ -155,32 +155,25 @@ public class PlayerBehaviourScript : MonoBehaviour {
     {
         if (Input.GetMouseButton(1))
         {
-            setTargetPosition();
 
-            //ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //if (Physics.Raycast(ray, out rayHit, 200))
+            StartCoroutine("animationControl");
+            //setTargetPosition();
+
+           
+
+            //if (isCrouch)
             //{
-            //    if (rayHit.collider.gameObject.tag == "Jump" && rayHit.normal.y > 0 && rayHit.normal.x == 0 && rayHit.normal.z == 0)
-            //    {
+            //    anim.SetBool("Walk", false);
+            //    anim.SetBool("WalkCrouch", true);
 
-            //        jump = true;
-            //        Debug.Log("jump");
-            //    }
+            //}
+            //if (!isCrouch)
+            //{
+            //    anim.SetBool("Walk", true);
+            //    anim.SetBool("WalkCrouch", false);
             //}
 
-            if (isCrouch)
-            {
-                anim.SetBool("Walk", false);
-                anim.SetBool("WalkCrouch", true);
-
-            }
-            if (!isCrouch)
-            {
-                anim.SetBool("Walk", true);
-                anim.SetBool("WalkCrouch", false);
-            }
-
-            isMoving = true;
+            //isMoving = true;
         }
         
     }
@@ -205,5 +198,28 @@ public class PlayerBehaviourScript : MonoBehaviour {
         }
         //define velocidade do movimento
         agent.speed = playerSpeed;
+    }
+
+    IEnumerator animationControl()
+    {
+        setTargetPosition();
+
+
+
+        if (isCrouch)
+        {
+            anim.SetBool("Walk", false);
+            anim.SetBool("WalkCrouch", true);
+
+        }
+        if (!isCrouch)
+        {
+            anim.SetBool("Walk", true);
+            anim.SetBool("WalkCrouch", false);
+        }
+
+        isMoving = true;
+
+        yield return null;
     }
 }
