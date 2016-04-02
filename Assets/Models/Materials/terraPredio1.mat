@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 43b28198b089c8a42891ce28a5b4cc58, type: 3}
+          m_Texture: {fileID: 2800000, guid: 4630a2e0f464eb24fbc43ee54216d16c, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: e4dc1cee7461f32439b6e00b88372e5f, type: 3}
+          m_Texture: {fileID: 2800000, guid: e2c6b6f0a912a1f4dba7cd1365dcaf40, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -39,13 +39,6 @@ Material:
       data:
         first:
           name: _ParallaxMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OcclusionMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -73,6 +66,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _OcclusionMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
@@ -82,7 +82,7 @@ Material:
         first:
           name: _SpecGlossMap
         second:
-          m_Texture: {fileID: 2800000, guid: be7d5402f7badd746ad7a9828eb70794, type: 3}
+          m_Texture: {fileID: 2800000, guid: cff147a3c72c65b4b86a28130d188483, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
