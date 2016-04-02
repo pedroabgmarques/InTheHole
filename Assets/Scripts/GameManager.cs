@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
 	#region Variáveis
 
-	public static GameManager gm;
+	public static GameManager Gm;
 
 	#endregion
 
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		gm = this;
+		Gm = this;
 	}
 	
 	// Update is called once per frame
