@@ -16,7 +16,7 @@ GameObject:
   - 82: {fileID: 8251284}
   m_Layer: 0
   m_Name: Diamond Green
-  m_TagString: Untagged
+  m_TagString: PickUp_1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
