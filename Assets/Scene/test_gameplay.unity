@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 3.06
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e222162ddb8d34547a133b673221b195, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -485,7 +485,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.802726, b: 0.2647059, a: 1}
   m_Intensity: 0.7
   m_Range: 10
   m_SpotAngle: 30
@@ -1789,15 +1789,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 175.4
+      value: 1.3987015
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.247
+      value: 0.24699998
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06188202
+      value: 9.4002495
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1805,7 +1805,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1813,7 +1813,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.13052651
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a698ab391c010f643bb350e60a983b2d, type: 3}
       propertyPath: m_RootOrder

@@ -11,9 +11,10 @@ public class CameraControllerCena3 : MonoBehaviour {
     float posicaoX;
     float posicaoY;
 	// Use this for initialization
-	void Start () {
-
+	void Start ()
+    {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         player = GameObject.FindGameObjectWithTag("Player");
         cameraFollow = true;

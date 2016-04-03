@@ -196,6 +196,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void LoadStreetScene()
         {
             SceneManager.LoadScene(3);
+            SceneManager.UnloadScene(2);
         }
 
         private void PlayLandingSound()
