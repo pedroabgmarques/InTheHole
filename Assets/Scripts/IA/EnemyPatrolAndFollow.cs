@@ -46,6 +46,11 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
             {
                 goToPlayer();
             }
+            else
+            {
+                anim.SetBool("run", false);
+                anim.SetBool("walk", true);
+            }
         }
 
 	}
@@ -66,19 +71,21 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
     //vai se encontro ao jogador
     void goToPlayer()
     {
+        if (Vector3.Distance(transform.position, player.transform.position) > 1.5f)        {
+            enemyAgent.destination = player.transform.position;
+            anim.SetBool("walk", false);
+            anim.SetBool("run", true);
+        }
+        else
+        {
+            enemyAgent.destination = transform.position;
+            anim.SetBool("run", false);
+            anim.SetBool("idle", true);
 
-        enemyAgent.destination = player.transform.position;
-        anim.SetBool("walk", false);
-        anim.SetBool("run", true);
+            //TODO: loadlevel, voltar ao início
+        }
+        
        
     }
-    //se encontrar o jogador
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject==player /*&& playerHealth.playerHealth>0*/)
-        {
-            //droneAlarm.alarm = true;
-            
-        }
-    }
+
 }
