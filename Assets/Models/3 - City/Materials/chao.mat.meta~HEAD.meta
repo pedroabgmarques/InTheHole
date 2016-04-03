@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Models/3 - City/Materials/chao.mat.meta~HEAD.meta
 guid: 709fa1e9325228846ad0c1c66331420b
 timeCreated: 1459644667
+=======
+guid: d66775612585e5a4d97ad00674fbd025
+timeCreated: 1459644201
+>>>>>>> 4296e1ff377212855e3dbd1c83d0a6334c2b3f70:Assets/Models/3 - City/Materials/chao.mat.meta~HEAD.meta
 licenseType: Free
 DefaultImporter:
   userData: 
