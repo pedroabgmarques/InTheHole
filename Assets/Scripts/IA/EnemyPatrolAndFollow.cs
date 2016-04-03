@@ -66,16 +66,11 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
     //vai se encontro ao jogador
     void goToPlayer()
     {
-        //if (playerHealth.playerHealth > 0)
-       // {
-            enemyAgent.destination = player.transform.position;
-        //}
-       // else
-        //{
-        //    droneAlarm.alarm = false;
-        //    patrolPointID = 0;
-        //    nextPatrolSpot();
-        //}
+
+        enemyAgent.destination = player.transform.position;
+        anim.SetBool("walk", false);
+        anim.SetBool("run", true);
+       
     }
     //se encontrar o jogador
     void OnTriggerEnter(Collider other)
