@@ -17,7 +17,7 @@ public class frustum_trigger : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemy = transform.root.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
         //alarm = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyPatrolAndFollow>().alarm;
         enemyPatrol = transform.root.GetComponent<EnemyPatrolAndFollow>();
@@ -25,7 +25,6 @@ public class frustum_trigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
     void OnTriggerStay(Collider other)
@@ -33,7 +32,7 @@ public class frustum_trigger : MonoBehaviour {
 
         print(other.transform.name + ": " + other.transform.tag);
 
-        offset = new Vector3(0, 1.6f, 0);
+        offset = new Vector3(0, 1.4f, 0);
 
         ray.origin = enemy.transform.position + offset;
         ray.direction = (player.transform.position + offset) - (enemy.transform.position + offset);
@@ -50,7 +49,6 @@ public class frustum_trigger : MonoBehaviour {
             }
             else
             {
-                enemyPatrol.alarm = false;
                 Debug.Log("nao é o player");
                 Debug.Log(rayHit.transform.tag);
             }

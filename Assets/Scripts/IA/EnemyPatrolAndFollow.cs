@@ -53,6 +53,11 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
             }
         }
 
+        if (alarm && Vector3.Distance(transform.position, player.transform.position) > 10)
+        {
+            alarm = false;
+        }
+
 	}
 
     void nextPatrolSpot()
