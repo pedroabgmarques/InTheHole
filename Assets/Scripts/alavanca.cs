@@ -43,62 +43,66 @@ public class alavanca : MonoBehaviour {
 	    
 	}
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        anim.Play();
-        particle.Play();
-
-        //cam.transform.Rotate(cam.transform.TransformDirection(cam.transform.up), -45);
-        camController.enabled = false;
-        cam.transform.LookAt(target.position);
-        cam.transform.position = player.transform.position + new Vector3(10,3, -10);
-
-        //StartCoroutine("destroyScene");
-
-        foreach (Transform child in predios.transform)
+        if (other.tag == "Player" || other.tag == "pescoco_player")
         {
-            Destroy(child.gameObject,Random.Range(0.1f, 5f));
+            anim.Play();
+            particle.Play();
+
+            player.AddComponent<BoxCollider>();
+
+            //StartCoroutine("destroyScene");
+
+            foreach (Transform child in predios.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in entulhos.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in ObstaculosEsconder.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in obstaculos.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in ObstaculosTapados.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in candeeiros.transform)
+            {
+                Destroy(child.gameObject, Random.Range(0.1f, 5f));
+
+            }
+            foreach (Transform child in estradas.transform)
+            {
+                Destroy(child.gameObject, Random.Range(5f, 5.5f));
+
+            }
+
+            rb.isKinematic = false;
+            Destroy(player.GetComponent<NavMeshAgent>(), 6f);
+
             
-        }
-        foreach (Transform child in entulhos.transform)
-        {
-            Destroy(child.gameObject, Random.Range(0.1f, 5f));
+            Destroy(GameObject.FindGameObjectsWithTag("Enemy")[0]);
+            Destroy(GameObject.FindGameObjectsWithTag("Enemy")[1]);
+            Destroy(gameObject, 5f);
+            Destroy(gameObject.transform.parent.gameObject, 5f);
+            
 
-        }
-        foreach (Transform child in ObstaculosEsconder.transform)
-        {
-            Destroy(child.gameObject, Random.Range(0.1f, 5f));
-
-        }
-        foreach (Transform child in obstaculos.transform)
-        {
-            Destroy(child.gameObject, Random.Range(0.1f, 5f));
-
-        }
-        foreach (Transform child in ObstaculosTapados.transform)
-        {
-            Destroy(child.gameObject, Random.Range(0.1f, 5f));
-
-        }
-        foreach (Transform child in candeeiros.transform)
-        {
-            Destroy(child.gameObject, Random.Range(0.1f, 5f));
-
-        }
-        foreach (Transform child in estradas.transform)
-        {
-            Destroy(child.gameObject, Random.Range(5f, 5.5f));
-
+            camController.enabled = true;
         }
         
-        rb.isKinematic = false;
-        Destroy(player.GetComponent<NavMeshAgent>(), 6f);
-
-
-        Destroy(GameObject.FindGameObjectsWithTag("Enemy")[0]);
-        Destroy(GameObject.FindGameObjectsWithTag("Enemy")[1]);
-        Destroy(gameObject, 5f);
-        Destroy(gameObject.transform.parent.gameObject, 5f);
     }
 
     IEnumerator destroyScene()

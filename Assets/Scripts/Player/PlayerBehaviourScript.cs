@@ -72,35 +72,39 @@ public class PlayerBehaviourScript : MonoBehaviour {
 
     void setTargetPosition()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out newTargetPosition, 200))
+        if (agent != null)
         {
-            if (newTargetPosition.transform.tag == "Enemy")
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out newTargetPosition, 200))
             {
-                enemyTarget = true;
-                enemy = newTargetPosition.transform.gameObject;
-                agent.destination = newTargetPosition.transform.position;
-                
+                if (newTargetPosition.transform.tag == "Enemy")
+                {
+                    enemyTarget = true;
+                    enemy = newTargetPosition.transform.gameObject;
+                    agent.destination = newTargetPosition.transform.position;
 
-            }
-            else
-            {
-                enemyTarget = false;
-                agent.stoppingDistance = 0f;
-                agent.destination = newTargetPosition.point;
-            }
 
-            if (newTargetPosition.transform.tag != "hidingWall")
-            {
-                isCrouch = false;
-                //jumpEnabled.jumpEnabled = true;
-            }
-            else if (newTargetPosition.transform.tag == "hidingWall")
-            {
-                isCrouch = true;
-                //jumpEnabled.jumpEnabled = false;
+                }
+                else
+                {
+                    enemyTarget = false;
+                    agent.stoppingDistance = 0f;
+                    agent.destination = newTargetPosition.point;
+                }
+
+                if (newTargetPosition.transform.tag != "hidingWall")
+                {
+                    isCrouch = false;
+                    //jumpEnabled.jumpEnabled = true;
+                }
+                else if (newTargetPosition.transform.tag == "hidingWall")
+                {
+                    isCrouch = true;
+                    //jumpEnabled.jumpEnabled = false;
+                }
             }
         }
+        
 
     }
 
@@ -180,24 +184,28 @@ public class PlayerBehaviourScript : MonoBehaviour {
 
     void stopOnPosition()
     {
-        if (agent.remainingDistance < 0.2f)//antes 0.2f
+        if (agent != null)
         {
-            anim.SetBool("Walk", false);
-            anim.SetBool("WalkCrouch", false);
-            if (isCrouch)
+            if (agent.remainingDistance < 0.2f)//antes 0.2f
             {
-                anim.SetBool("IdleCrouch", true);
-                anim.SetBool("Idle", false);
+                anim.SetBool("Walk", false);
+                anim.SetBool("WalkCrouch", false);
+                if (isCrouch)
+                {
+                    anim.SetBool("IdleCrouch", true);
+                    anim.SetBool("Idle", false);
+                }
+                else
+                {
+                    anim.SetBool("Idle", true);
+                    anim.SetBool("IdleCrouch", false);
+                }
+                isMoving = false;
             }
-            else
-            {
-                anim.SetBool("Idle", true);
-                anim.SetBool("IdleCrouch", false);
-            }
-            isMoving = false;
+            //define velocidade do movimento
+            agent.speed = playerSpeed;
         }
-        //define velocidade do movimento
-        agent.speed = playerSpeed;
+        
     }
 
     IEnumerator animationControl()
