@@ -24,7 +24,6 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
         anim = GetComponent<Animator>();
         nextPatrolSpot();
         //droneAlarm = GameObject.FindGameObjectWithTag("Drone").GetComponent<DroneAlarm>();
-        anim.SetBool("Walk", true);
         //enemyHealth = gameObject.GetComponent<EnemyHealth>();
         alarm = false;
 	}
@@ -53,7 +52,7 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
 
     void nextPatrolSpot()
     {
-        if (patrolPointID < patrolPoints.Length)
+        if (patrolPointID < patrolPoints.Length - 1)
         {
             patrolPointID++;
         }
