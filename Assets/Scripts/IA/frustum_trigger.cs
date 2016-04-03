@@ -20,7 +20,7 @@ public class frustum_trigger : MonoBehaviour {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
         //alarm = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyPatrolAndFollow>().alarm;
-        enemyPatrol = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyPatrolAndFollow>();
+        enemyPatrol = transform.root.GetComponent<EnemyPatrolAndFollow>();
 	}
 	
 	// Update is called once per frame

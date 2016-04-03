@@ -12,6 +12,7 @@ TagManager:
   - frustum
   - Enemy
   - olhos
+  - pescoco_player
   layers:
   - Default
   - TransparentFX

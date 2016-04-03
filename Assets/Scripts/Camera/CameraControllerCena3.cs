@@ -33,7 +33,8 @@ public class CameraControllerCena3 : MonoBehaviour {
         if(cameraFollow)
         {
 
-            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x, transform.position.y, transform.position.z), 0.8f * Time.deltaTime);
+            float z = player.transform.position.z - transform.position.z / 2;
+            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x - 3.5f, transform.position.y, transform.position.z), 0.8f * Time.deltaTime);
 
             //transform.position = Vector3.Lerp(transform.position, player.transform.position + new Vector3(0, 16, -15), 0.8f * Time.deltaTime);
             posicaoX = transform.position.x;
