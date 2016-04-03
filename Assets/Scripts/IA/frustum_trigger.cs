@@ -31,6 +31,8 @@ public class frustum_trigger : MonoBehaviour {
     void OnTriggerStay(Collider other)
     {
 
+        print(other.transform.name + ": " + other.transform.tag);
+
         offset = new Vector3(0, 1.6f, 0);
 
         ray.origin = enemy.transform.position + offset;
