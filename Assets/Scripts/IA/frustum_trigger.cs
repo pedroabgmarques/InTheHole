@@ -13,6 +13,7 @@ public class frustum_trigger : MonoBehaviour {
     GameObject olhos;
     EnemyPatrolAndFollow enemyPatrol;
     bool alarm;
+    private Vector3 offset;
 	// Use this for initialization
 	void Start () 
     {
@@ -29,32 +30,29 @@ public class frustum_trigger : MonoBehaviour {
 
     void OnTriggerStay(Collider other)
     {
-        //Debug.Log("TRIGGER");
-        //Debug.Log(other.gameObject.tag);
-        //if (other.gameObject.tag == "Player")
-        //{
-        //    Debug.Log("trigger player");
-            
 
-            ray.origin = enemy.transform.position + new Vector3(0, 1.5f, 0);
-            ray.direction = (player.transform.position) - (enemy.transform.position);
+        offset = new Vector3(0, 1.6f, 0);
 
+        ray.origin = enemy.transform.position + offset;
+        ray.direction = (player.transform.position + offset) - (enemy.transform.position + offset);
 
-            if (Physics.Raycast(ray, out rayHit))
+        print(other.transform.name +": "+ other.transform.tag);
+        Debug.DrawRay(ray.origin, ray.direction * 200, Color.red);
+
+        if (Physics.Raycast(ray, out rayHit))
+        {
+            if (rayHit.transform.tag == "Player" || rayHit.transform.tag == "pescoco_player")
             {
-                if (rayHit.transform.tag == "Player")
-                {
-                    enemyPatrol.alarm = true;
-                    Debug.Log("Inimigo consegue ver o player!");
-                }
-                else
-                {
-                    enemyPatrol.alarm = false;
-                    Debug.Log("nao é o player");
-                    Debug.Log(rayHit.transform.tag);
-                }
-
+                enemyPatrol.alarm = true;
+                Debug.Log("Inimigo consegue ver o player!");
             }
-        //}
+            else
+            {
+                enemyPatrol.alarm = false;
+                Debug.Log("nao é o player");
+                Debug.Log(rayHit.transform.tag);
+            }
+
+        }
     }
 }
