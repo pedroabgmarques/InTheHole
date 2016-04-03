@@ -7,6 +7,11 @@ TagManager:
   - Fire
   - PickUp_1
   - PickUp_2
+  - hidingWall
+  - JumpObstacle
+  - frustum
+  - Enemy
+  - olhos
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - AntiFrustum
   - 
   - 
   - 
