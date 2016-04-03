@@ -15,6 +15,7 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
     //public AudioSource die;
     //public AudioSource shoot;
     public bool alarm;
+    bool ativarFear;
 	void Start () 
     {
         patrolPointID = 0;
@@ -26,6 +27,7 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
         //droneAlarm = GameObject.FindGameObjectWithTag("Drone").GetComponent<DroneAlarm>();
         //enemyHealth = gameObject.GetComponent<EnemyHealth>();
         alarm = false;
+        ativarFear = false;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,11 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
             }
         }
 
+        if (alarm && Vector3.Distance(transform.position, player.transform.position) > 10)
+        {
+            alarm = false;
+        }
+
 	}
 
     void nextPatrolSpot()
@@ -78,14 +85,24 @@ public class EnemyPatrolAndFollow : MonoBehaviour {
         }
         else
         {
-            enemyAgent.destination = transform.position;
-            anim.SetBool("run", false);
-            anim.SetBool("idle", true);
+            
+                enemyAgent.destination = transform.position;
+                anim.SetBool("run", false);
+                anim.SetBool("idle", true);
 
-            //TODO: loadlevel, voltar ao início
+                StartCoroutine("wait");
+            
+ 
         }
         
        
+    }
+
+    IEnumerator wait()
+    {
+        
+        yield return new WaitForSeconds(2);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("test_gameplay");
     }
 
 }
