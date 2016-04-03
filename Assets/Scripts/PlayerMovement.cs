@@ -87,9 +87,7 @@ public class PlayerMovement : MonoBehaviour
         DieSound.Play();
         HasFinished = true;
         
-        //        Application.LoadLevel("Room");
-        SceneManager.LoadScene("Room");
-        
+        Invoke("LoadRoomScene", 4.0f);
     }
 
     #endregion
@@ -114,10 +112,10 @@ public class PlayerMovement : MonoBehaviour
         body.AddForce(direction * Speed);
     }
 
-    private float duration = 0.5f;
-    private float magnitude = 2.0f;
-
-  
+    private void LoadRoomScene()
+    {
+        SceneManager.LoadScene("Room");
+    }
 
     #endregion
 }

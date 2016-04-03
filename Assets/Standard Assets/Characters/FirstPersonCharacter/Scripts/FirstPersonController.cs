@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityStandardAssets.Cameras;
 using UnityStandardAssets.CrossPlatformInput;
@@ -185,9 +186,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public void OnTriggerEnter(Collider other)
         {
             FadeImage.CrossFadeAlpha(1.0f, 3, true);
+            Invoke("LoadStreetScene", 3);
         }
 
         #endregion
+
+        #region Métodos Privados
+
+        private void LoadStreetScene()
+        {
+            SceneManager.LoadScene(3);
+        }
 
         private void PlayLandingSound()
         {
@@ -311,5 +320,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
             _body.AddForceAtPosition(characterController.velocity*0.1f, hit.point, ForceMode.Impulse);
         }
+
+        #endregion
+
     }
 }
