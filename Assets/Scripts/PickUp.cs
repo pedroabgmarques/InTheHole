@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof (AudioSource))]
 public class PickUp : MonoBehaviour
 {
+   
+
     #region Componentes
 
     private MeshRenderer meshRenderer;
@@ -34,7 +36,7 @@ public class PickUp : MonoBehaviour
     // Start
     public void Start()
     {
-        player = PlayerMovement.Player;
+         player = PlayerMovement.Player;
     }
 
     // Update
@@ -65,6 +67,9 @@ public class PickUp : MonoBehaviour
         player.Score += Points;
         sfxPickUp.Play();
 
+        if (Points < 0)
+            player.HurtColor.a += 0.3f;
+       
         body.detectCollisions = false;
         meshRenderer.enabled = false;
 

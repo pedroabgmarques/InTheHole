@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net.Mime;
 using System.Runtime.InteropServices;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
 
     #region Componentes
 
+    public GameObject HurtImage;
+
+    private RawImage hurtImage;
     private Rigidbody body;
 
     #endregion
@@ -28,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
     private float moveVertical;
     private float moveForce;
 
+    public Color HurtColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+    private Vector3 startingPosition;
+
+    private AudioSource DieSound;
+
     #endregion
 
     #region Métodos MonoBehaviour
@@ -38,6 +49,28 @@ public class PlayerMovement : MonoBehaviour
         Player = this;
 
         body = GetComponent<Rigidbody>();
+        hurtImage = HurtImage.GetComponent<RawImage>();
+        hurtImage.color = HurtColor;
+
+        
+        DieSound = GetComponent<AudioSource>();
+        DieSound.playOnAwake = false;
+
+        startingPosition = transform.position;
+
+        
+    }
+
+    // Update
+    public void Update()
+    {
+        hurtImage.color = HurtColor;
+
+        if (transform.position.y < -20.0f)
+        {
+            transform.position = startingPosition;
+            body.velocity = Vector3.zero;
+        }
     }
 
     // Fixed Update
@@ -46,10 +79,17 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
+    private int count = 0;
+
     // On Trigger Enter
     public void OnTriggerEnter(Collider other)
     {
+        DieSound.Play();
         HasFinished = true;
+        
+        //        Application.LoadLevel("Room");
+        SceneManager.LoadScene("Room");
+        
     }
 
     #endregion
@@ -73,6 +113,11 @@ public class PlayerMovement : MonoBehaviour
 
         body.AddForce(direction * Speed);
     }
+
+    private float duration = 0.5f;
+    private float magnitude = 2.0f;
+
+  
 
     #endregion
 }
